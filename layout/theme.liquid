@@ -18,7 +18,9 @@
     {% endif %}
 
     {% render 'meta-tags' %}
-    
+    <style>
+      {% render 'css-main.min.css' %}
+    </style>
     {{ content_for_header }}
   </head>
 

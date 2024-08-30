@@ -1,18 +1,31 @@
 # Blank Shopify Theme
 
-Blank Shopify Theme represents a completely blank Shopify Theme Architecture for custom builds. All template files created with [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes. Contains meta-tags snippet for og:* meta tags.
+This repo is a fork ofr the [blank shopify theme](https://github.com/devwhodevs/blank-shopify-theme) by 
+Oleksandr Ostrovskyi, with some basic tooling on top to start working with tailwind.
 
-### Continuous Integration
+## Setup
 
-Blank Shopify Theme uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/devwhodevs/blank-shopify-theme/blob/master/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
+1. Install Shopify CLI
+2. Clone this repo.
+3. `nvm use` make sure the version of NPM being used is correct
+4. `npm i` install dependencies
+5. `npm run watch` to start a tailwind watcher
+6. `shopify theme dev` to start serving the theme
 
-#### Shopify/lighthouse-ci-action
+## Structure
 
-We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](https://github.com/Shopify/lighthouse-ci-action). This runs a series of [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) audits for the home, product and collections pages on a store to ensure code that gets added doesn't degrade storefront performance over time.
+The main Tailwind CSS file is in ./src/ - this should only be edited when adding either something global to all 
+elements (please ask someone if you want to do this), or to style a third-party component where you cannot control 
+the classes.
 
-#### Shopify/theme-check-action
+CSS is compiled to an inline CSS snippet in snippets/css-main.min.css.liquid
 
-Blank Shopify Theme runs Theme Check on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
+We generally use Custom Elements loaded as JS modules, so there isn't a compilation step or JS build pipeline. All JS 
+components should be in a separate JS file in the `./assets/` directory. Assets are typically included in liquid 
+section templates with the following syntax:
+```html
+<script src="{{ 'custom-element-name.js' | asset_url }}" type="module"></script>
+```
 
 ## License
 

@@ -1,0 +1,13 @@
+{
+  "plugins": ["@shopify/prettier-plugin-liquid", "prettier-plugin-tailwindcss"],
+  "indentSchema": true,
+  "printWidth": 120,
+  "overrides": [
+    {
+      "files": ["**/*.css", "**/*.js"],
+      "options": {
+        "singleQuote": true
+      }
+    }
+  ]
+}
